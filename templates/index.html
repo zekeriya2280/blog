@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Zelix Posts</h1>
+    {% for post in posts %}
+        <div class="post">
+            {% for id in ids %}
+                {% if post['id'].upper() == id.upper() %}
+                    <div class="post-image">
+                        <img src="{{ url_for('static', filename=firstimages[ids.index(id)] ) }}" alt="">
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="post-content">
+                <h2><a class='baslik' href="{{ url_for('post', post_id=post['id']) }}">{{ post['title'] }}</a></h2>
+                <p>{{ post['content'][:100].replace('. ','.<br>') }}</p>
+            </div>
+            <div class="post-actions">
+                <a href="{{ url_for('edit_post', post_id=post['title']) }}">Edit</a>
+                <form action="{{ url_for('delete_post', post_id=post['title']) }}" method="post" style="display:inline;">
+                    <button type="submit">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

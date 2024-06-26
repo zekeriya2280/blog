@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="post-animation">
+    </div>
+    <div class="post-leader">
+        {% for image in images %}
+            <div class="post-imagesarea">
+                <img src="{{ url_for('static', filename=image) }}" alt="">
+            </div>
+        {% endfor %}
+    </div>
+    <h1>{{ post['title'] }}</h1>
+    <p>{{ post['content'] }}</p>
+{% endblock %}

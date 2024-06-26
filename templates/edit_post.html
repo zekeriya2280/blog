@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Edit Post</h1>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.title.label }}<br>
+            {{ form.title(size=32) }}<br>
+            {% for error in form.title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div class = "edit-content">
+            <a>{{ form.content }}</a><br>
+            <!-- <textarea oninput=autoResize(this)>{{ form.content }}</textarea>-->
+            <br>
+            {% for error in form.content.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div class = "edit-submit-button">
+            
+             {{ form.submit() }}
+             
+           <!--href="{{url_for('edit_post', post_id=post['id'])}}"-->
+        </div>
+        <div class="edit-image">
+            <img src="{{ url_for('static', filename='images/zelixsell.png') }}" alt="">
+        </div>
+    </form>
+    {% if errors %}
+        <ul>
+            {% for field, error_messages in errors.items() %}
+                {% for error in error_messages %}
+                    <li>{{ field }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
