@@ -3,7 +3,7 @@ from firebase_admin import credentials, firestore, initialize_app
 from forms import PostForm
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "Zeki_1234"
+#app.config['SECRET_KEY'] = "Zeki_1234"
 
 # Initialize Firestore DB
 cred = credentials.Certificate('firebase-key.json')
